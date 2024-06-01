@@ -30,6 +30,20 @@
                     <a href="{{ route('admin.option.index') }}" @class(['nav-link', 'active' => str_contains($route, 'option.')])>Gérer les options</a>
                 </li>
             </ul>
+            <div class="ms-auto">
+                @auth
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <form action="{{ route('logoutlo') }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button class="nav-link"></button>
+                            </form>
+                        </li>
+                    </ul>
+                @endauth
+            </div>
+
         </div>
 
 
@@ -38,24 +52,7 @@
 
 <div class="container mt-5">
 
-    @if(session('success'))
-
-        <div class="alert alert-success">
-            {{ session('success') }}
-
-        </div>
-    @endif
-
-    @if($errors->any())
-
-        <div class="alert alert-danger">
-            <ul class="my-0"></ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </div>
-
-    @endif
+        @include('shared.flash')
 
     @yield('content')
 

@@ -12,9 +12,9 @@
     <div class="container">
         <h2>Nos derniers bien</h2>
         <div class="row">
-            @foreach ($properties as $porperty)
+            @foreach ($properties as $property)
             <div class="col">
-
+                @include('property.card')
             </div>
             @endforeach
         </div>
