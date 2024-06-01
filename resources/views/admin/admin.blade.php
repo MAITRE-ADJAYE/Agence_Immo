@@ -8,6 +8,13 @@
     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.bootstrap5.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
     <title>@yield('title') | Administration</title>
+    <style>
+        @Layer reset {
+            button {
+                all:unset;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -34,10 +41,10 @@
                 @auth
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <form action="{{ route('logoutlo') }}" method="post">
+                            <form action="{{ route('logout') }}" method="post">
                                 @csrf
                                 @method('delete')
-                                <button class="nav-link"></button>
+                                <button class="nav-link">Se déconnecter</button>
                             </form>
                         </li>
                     </ul>

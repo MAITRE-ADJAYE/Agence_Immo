@@ -16,6 +16,12 @@ use App\Http\Controllers\Admin\OptionController;
 $idRegex = '[0-9]+';
 $slugRegex = '[0-9a-z\-]+';
 
+Route::get('/', function () {
+    return view('frontent.index');
+
+});
+
+
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/biens', [\App\Http\Controllers\PropertyController::class, 'index'])->name('property.index');
 Route::get('/biens/{slug}-{property}', [\App\Http\Controllers\PropertyController::class, 'show'])
@@ -31,9 +37,13 @@ Route::post('/biens/{property}/contact', [\App\Http\Controllers\PropertyControll
         'property' => $idRegex,
     ]);
 
-Route::get('/login', [\App\Http\Controllers\AuthController::class, 'login'])->middleware('guest')->name('login');
+Route::get('/login', [\App\Http\Controllers\AuthController::class, 'login'])
+->middleware('guest')
+->name('login');
 Route::post('/login', [\App\Http\Controllers\AuthController::class, 'doLogin']);
-Route::delete('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout')->middleware('auth')->name('logout');
+Route::delete('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])
+->middleware('auth')
+->name('logout');
 
 
 Route::prefix('admin')->name('admin.')->group(function () {
